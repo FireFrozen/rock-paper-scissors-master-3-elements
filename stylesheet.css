@@ -169,6 +169,7 @@ main{
     position: absolute;
     bottom: 15px;
     right: 15px;
+    
 }
 
 #rules-btn-container button{
@@ -180,6 +181,8 @@ main{
     background: none;
     font-weight: 100;
     font-size: 12px;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    letter-spacing: 3px;
     
 }
 
