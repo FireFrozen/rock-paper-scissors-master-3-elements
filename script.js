@@ -33,8 +33,6 @@ function pickOption(obj){
 
     //console.log(pickPlayer);
 
-
-
     setTimeout(function(){
         pickHouse = pickOptions[parseInt(Math.random()*3)];
         //console.log(pickHouse);
@@ -64,16 +62,36 @@ function pickOption(obj){
                     document.getElementById("button-play-again").style.color ="hsl(229, 25%, 31%)"
                     score = score + 1;
 
-                    document.getElementById("player-pick").style.cssText = 
-                    "box-shadow:"+shadowPicks[playerIndex]+",0 0 0 50px rgba(255, 255, 255, .02),0 0 0 100px rgba(255, 255, 255,.02),0 0 0 150px rgba(255, 255, 255,.02)";
+                    if(document.documentElement.scrollWidth < 500){ //different shadow in mobile's screen size
+                        document.getElementById("player-pick").style.cssText = 
+                        "box-shadow:"+shadowPicks[playerIndex]+",0 0 0 20px rgba(255, 255, 255, .02),0 0 0 40px rgba(255, 255, 255,.02),0 0 0 60px rgba(255, 255, 255,.02)";
+ 
+                    }else{
+                        document.getElementById("player-pick").style.cssText = 
+                        "box-shadow:"+shadowPicks[playerIndex]+",0 0 0 50px rgba(255, 255, 255, .02),0 0 0 100px rgba(255, 255, 255,.02),0 0 0 150px rgba(255, 255, 255,.02)";
+           
+                    }
+                    
+                    //document.getElementById("player-pick").style.cssText = 
+                    //"box-shadow:"+shadowPicks[playerIndex]+",0 0 0 50px rgba(255, 255, 255, .02),0 0 0 100px rgba(255, 255, 255,.02),0 0 0 150px rgba(255, 255, 255,.02)";
                 
                 } else{ //LOSE LOGIC
                     document.getElementById("game-result-text").innerHTML= "YOU LOSE";
                     document.getElementById("button-play-again").style.color ="hsl(349, 71%, 52%)"
                     score = score - 1;
 
-                    document.getElementById("house-pick").style.cssText = 
-                    "box-shadow:"+shadowPicks[houseIndex]+",0 0 0 50px rgba(255, 255, 255, .02),0 0 0 100px rgba(255, 255, 255,.02),0 0 0 150px rgba(255, 255, 255,.02)";
+                    if(document.documentElement.scrollWidth < 500){
+                        document.getElementById("house-pick").style.cssText = 
+                        "box-shadow:"+shadowPicks[houseIndex]+",0 0 0 20px rgba(255, 255, 255, .02),0 0 0 40px rgba(255, 255, 255,.02),0 0 0 60px rgba(255, 255, 255,.02)";
+ 
+                    }else{
+                        document.getElementById("house-pick").style.cssText = 
+                        "box-shadow:"+shadowPicks[houseIndex]+",0 0 0 50px rgba(255, 255, 255, .02),0 0 0 100px rgba(255, 255, 255,.02),0 0 0 150px rgba(255, 255, 255,.02)";
+           
+                    }
+
+                    //document.getElementById("house-pick").style.cssText = 
+                    //"box-shadow:"+shadowPicks[houseIndex]+",0 0 0 50px rgba(255, 255, 255, .02),0 0 0 100px rgba(255, 255, 255,.02),0 0 0 150px rgba(255, 255, 255,.02)";
 
                     if(score < 0){
                         score = 0;
@@ -82,6 +100,7 @@ function pickOption(obj){
             }
 
             document.getElementById("score").innerHTML= score;
+            sessionStorage.setItem("scoreValue", score);
             //console.log(score);
 
             document.getElementById("game-result-container").style.display='flex';
@@ -92,7 +111,6 @@ function pickOption(obj){
 
     },2000)
 }
-
 
 function resetGame(){
     document.getElementById("game-container-step2").style.display='none';
@@ -107,7 +125,17 @@ function resetGame(){
     document.getElementById("player-pick").className = "icon-border pick-border";
 
     document.getElementById("house-icon-container").classList.remove("icon-container");
-    document.getElementById("house-icon-container").classList.add("null-container");
-    
-    
+    document.getElementById("house-icon-container").classList.add("null-container"); 
+}
+
+window.onload=function() // loading score after refreshing the browser 
+{
+
+    if(sessionStorage.getItem("scoreValue")!=null)
+    {
+        scoreValue = sessionStorage.getItem("scoreValue");
+
+        document.getElementById('score').innerHTML = scoreValue;
+
+    }
 }

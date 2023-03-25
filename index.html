@@ -28,7 +28,7 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; color: white; }
+    .attribution { font-size: 11px; text-align: center; color: white; margin-bottom: 0; }
     .attribution a { color: hsl(228, 41%, 63%); }
   </style>
 </head>
@@ -71,10 +71,6 @@
 
     </div>
 
-    <div id="rules-btn-container">
-      <button onclick="openRules()">RULES</button>
-    </div>
-
     <!-- Window rules  -->
 
     <div id="window-rules">
@@ -86,6 +82,10 @@
         <div id="image-rules-container">
           <img id= "img-rules" src="./images/image-rules.svg" alt="image-rules"/>
         </div>
+
+        <div id="rules-close-mobile" display="none">
+          <img class="icon-close" src="./images/icon-close.svg" alt="icon-close" onclick="closeRules()"/>
+        </div>
       </div>
     </div>
 
@@ -94,7 +94,7 @@
     <div id="game-container-step2">
 
       <div id="pick-player-container">
-        <h1>YOU PICKED</h1>
+        <div><h1>YOU PICKED</h1></div>
 
         <div class="icon-border pick-border" id="player-pick">
           <div class="icon-container pick-container">
@@ -120,8 +120,11 @@
 
     </div>
 
-  </main>
+    <div id="rules-btn-container">
+      <button onclick="openRules()">RULES</button>
+    </div>
 
+  </main>
 
   
   <footer class="attribution">
