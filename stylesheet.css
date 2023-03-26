@@ -247,6 +247,10 @@ main{
     
 }
 
+#rules-close-mobile{
+    display: none;
+}
+
 #img-rules{
     
     margin-left: 45px;
